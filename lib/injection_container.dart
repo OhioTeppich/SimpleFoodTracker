@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:simple_food_tracker/user_info_repository.dart';
+import 'package:simple_food_tracker/application/onboarding/on_boarding_cubit.dart';
+import 'package:simple_food_tracker/infrastructure/userdata/user_data_repository.dart';
 
 final ic = GetIt.instance;
 
@@ -10,5 +11,8 @@ Future<void> init() async {
   ic.registerLazySingleton(() => sharedPreferences);
 
   ic.registerLazySingleton(
-      () => UserInfoRepository(sharedPreferences: ic.get<SharedPreferences>()));
+      () => UserDataRepository(sharedPreferences: ic.get<SharedPreferences>()));
+
+  ic.registerLazySingleton(
+      () => OnBoardingCubit(userDataRepository: ic.get<UserDataRepository>()));
 }
