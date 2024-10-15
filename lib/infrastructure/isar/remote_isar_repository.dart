@@ -8,10 +8,8 @@ import 'package:simple_food_tracker/infrastructure/isar/isar_repository.dart';
 class RemoteIsarRepository<T> extends IsarRepository {
   RemoteIsarRepository();
 
-  late final isar = init();
-
   @visibleForTesting
-  Future<Isar> init() async {
+  Future open() async {
     final dir = await getApplicationDocumentsDirectory();
     return await Isar.open(
       [
@@ -23,20 +21,24 @@ class RemoteIsarRepository<T> extends IsarRepository {
   }
 
   @override
-  Future<void> delete(Id id) {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<void> delete(Id id) async {
+    var isar = await open();
+    await isar.writeTxn(() async {
+      await isar.T.delete(id);
+    });
   }
 
   @override
-  Future<void> create(data) {
-    // TODO: implement create
-    throw UnimplementedError();
+  Future<void> create(data) async {
+    var isar = await open();
+    await isar.writeTxn(() async {
+      await isar.T.put(data);
+    });
   }
 
   @override
-  Future read(Id id) {
-    // TODO: implement read
-    throw UnimplementedError();
+  Future<T> read(Id id) async {
+    var isar = await open();
+    return await isar.T.get(id);
   }
 }
