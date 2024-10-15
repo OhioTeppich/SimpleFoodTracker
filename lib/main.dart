@@ -8,7 +8,6 @@ import 'injection_container.dart' as ic;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await ic.init();
 
   runApp(BlocProvider(

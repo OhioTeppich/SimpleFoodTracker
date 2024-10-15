@@ -1,28 +1,10 @@
-import 'package:equatable/equatable.dart';
-import 'package:uuid/uuid.dart';
+import 'package:isar/isar.dart';
 
-class Meal extends Equatable {
-  final Uuid id;
-  final List<Uuid> foodIds;
+part 'meal.g.dart';
 
-  const Meal({
-    required this.id,
-    required this.foodIds,
-  });
+@collection
+class Meal {
+  Id id = Isar.autoIncrement;
 
-  Meal copyWith({
-    Uuid? id,
-    List<Uuid>? foodIds,
-  }) {
-    return Meal(
-      id: id ?? this.id,
-      foodIds: foodIds ?? this.foodIds,
-    );
-  }
-
-  @override
-  List<Object?> get props => [
-        id,
-        foodIds,
-      ];
+  List<Id>? food;
 }
