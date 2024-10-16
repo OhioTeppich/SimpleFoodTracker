@@ -1,7 +1,8 @@
+import 'package:equatable/equatable.dart';
 import 'package:simple_food_tracker/domain/core/entity.dart';
 import 'package:uuid/uuid.dart';
 
-class Food implements Entity {
+class Food extends Equatable implements Entity {
   @override
   final Uuid id;
 
@@ -10,7 +11,7 @@ class Food implements Entity {
   final double protein;
   final double fat;
 
-  Food({
+  const Food({
     required this.id,
     required this.name,
     required this.kcal,
@@ -33,4 +34,13 @@ class Food implements Entity {
         protein: json['protein'],
         fat: json['fat'],
       );
+
+  @override
+  List<Object?> get props => [
+        id,
+        name,
+        kcal,
+        protein,
+        fat,
+      ];
 }

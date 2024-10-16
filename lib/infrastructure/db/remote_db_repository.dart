@@ -19,13 +19,17 @@ class RemoteDbRepository extends DbRepository {
   @override
   Future<void> create(String data, String fileName) async {
     final file = await _localFile(fileName);
-    file.writeAsString(data, mode: FileMode.append);
+    await file.writeAsString(data, mode: FileMode.append);
   }
 
   @override
-  Future<void> delete(Uuid id) {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<void> delete(String data, String fileName) async {
+    // final file = await _localFile(fileName);
+
+    // final contents = await file.readAsString();
+
+    // var newData;
+    // await file.writeAsString(newData, mode: FileMode.write);
   }
 
   @override

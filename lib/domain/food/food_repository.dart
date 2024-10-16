@@ -3,5 +3,6 @@ import 'package:uuid/uuid.dart';
 
 abstract class FoodRepository {
   Future<void> addFood(Food food);
-  Future<Food> getFood(Uuid id);
+  Future<Food> getFoodById(Uuid id);
+  Future<void> deleteFood(Uuid id);
 }

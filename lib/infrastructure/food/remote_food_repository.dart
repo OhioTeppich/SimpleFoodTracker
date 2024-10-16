@@ -20,7 +20,7 @@ class RemoteFoodRepository extends FoodRepository {
   }
 
   @override
-  Future<Food> getFood(Uuid id) async {
+  Future<Food> getFoodById(Uuid id) async {
     var file = await _remoteDbRepository.read(fileName);
 
     var files = file.split(';');
@@ -38,5 +38,11 @@ class RemoteFoodRepository extends FoodRepository {
 
     //TODO: throw error
     return Food(id: id, name: 'name', kcal: 1, protein: 1, fat: 1);
+  }
+
+  @override
+  Future<void> deleteFood(Uuid id) async {
+    // var food = await getFoodById(id);
+    // await _remoteDbRepository.delete(food.toJson().toString(), fileName);
   }
 }
