@@ -6,8 +6,6 @@ version: 0.1.0
 environment:
   sdk: ^3.5.3
 
-isar_version: &isar_version 3.1.0 # define the version to be used
-
 dependencies:
   equatable: ^2.0.5
   flutter:
@@ -18,9 +16,8 @@ dependencies:
   flutter_bloc: 8.1.5
   wheel_slider: ^1.2.1
   bottom_picker: ^2.8.0
-  isar: *isar_version
-  isar_flutter_libs: *isar_version
   path_provider: ^2.0.15
+  uuid: ^4.5.1
 
 dev_dependencies:
   flutter_test:
@@ -29,7 +26,6 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   mocktail: 1.0.3
   bloc_test: 9.1.7
-  isar_generator: *isar_version
   build_runner: 2.4.10
 
 flutter:

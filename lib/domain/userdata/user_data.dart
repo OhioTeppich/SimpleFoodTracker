@@ -35,7 +35,7 @@ class UserData extends Equatable {
     );
   }
 
-  static UserData empty() {
+  factory UserData.empty() {
     return const UserData(
       name: '',
       weight: 0,

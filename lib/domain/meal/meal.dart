@@ -1,10 +1,24 @@
-import 'package:isar/isar.dart';
+import 'package:simple_food_tracker/domain/core/entity.dart';
+import 'package:uuid/uuid.dart';
 
-part 'meal.g.dart';
+class Meal implements Entity {
+  @override
+  final Uuid id;
 
-@collection
-class Meal {
-  Id id = Isar.autoIncrement;
+  final List<Uuid> foodIds;
 
-  List<Id>? food;
+  Meal({
+    required this.id,
+    required this.foodIds,
+  });
+
+  Map<String, dynamic> toJson(Meal food) => {
+        'id': food.id,
+        'foodIds': food.foodIds,
+      };
+
+  Meal fromJson(Map<String, dynamic> json) => Meal(
+        id: json['id'],
+        foodIds: json['foodIds'],
+      );
 }
