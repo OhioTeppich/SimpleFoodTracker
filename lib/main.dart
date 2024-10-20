@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_food_tracker/application/onboarding/on_boarding_cubit.dart';
 import 'package:simple_food_tracker/domain/userdata/user_data.dart';
+import 'package:simple_food_tracker/presentation/pages/diet/diet_page.dart';
 import 'package:simple_food_tracker/presentation/pages/home/home_page.dart';
 import 'package:simple_food_tracker/presentation/pages/onboarding/on_boarding_page.dart';
 import 'injection_container.dart' as ic;
@@ -25,6 +26,7 @@ class MainApp extends StatelessWidget {
       routes: {
         '/': (context) => OnBoardingPage(),
         '/home': (context) => const HomePage(),
+        '/diet': (context) => const DietPage()
       },
       initialRoute:
           context.read<OnBoardingCubit>().loadUserData() == UserData.empty()

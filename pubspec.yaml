@@ -18,6 +18,7 @@ dependencies:
   bottom_picker: ^2.8.0
   path_provider: ^2.0.15
   uuid: ^4.5.1
+  flutter_animate: ^4.5.0
 
 dev_dependencies:
   flutter_test:

@@ -18,7 +18,6 @@ class OnBoardingPage extends StatelessWidget {
       freeze: true,
       onDone: () {
         Navigator.pushNamed(context, '/home');
-        var name = _nameTextController.text;
       },
       done: Container(
         color: Colors.purple,

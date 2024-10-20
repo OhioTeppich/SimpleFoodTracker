@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:simple_food_tracker/presentation/core/custom_button.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
-        child: Container(
-          height: 30,
-          width: 30,
-          color: Colors.deepOrange,
+        child: Center(
+          child: CustomButton(
+            text: '+ Add',
+          ),
         ),
       ),
     );
