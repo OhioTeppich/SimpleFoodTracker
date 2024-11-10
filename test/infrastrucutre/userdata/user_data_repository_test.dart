@@ -25,6 +25,7 @@ void main() {
       gender: 1,
       height: 184,
       age: 26,
+      athleticActivity: 22,
     );
 
     when(() => mockSharedPreferences.setString(any(), any()))
@@ -48,6 +49,9 @@ void main() {
     when(() =>
             mockSharedPreferences.getDouble(UserDataRepository.userPalValueKey))
         .thenAnswer((_) => userData.palValue);
+    when(() => mockSharedPreferences
+            .getInt(UserDataRepository.userAthleticActivity))
+        .thenAnswer((_) => userData.athleticActivity);
   });
 
   group('saveUserData', () {
@@ -60,26 +64,6 @@ void main() {
       var actual = userInfoRepository.loadUserData();
 
       expect(actual, userData);
-    });
-  });
-  group('getBasalMetabolicRate', () {
-    test('should return correct calculate BasalMetabolicRate', () {
-      var actual = userInfoRepository.getBasalMetabolicRate();
-
-      expect(
-          actual,
-          (10 * userData.weight) +
-              (6.25 * userData.height) -
-              (5 * userData.age) +
-              5);
-    });
-  });
-  group('getPowerMetabolicRate', () {
-    test('should return correct calculated PowerMetabolicRate', () {
-      var basalMetabolicRate = userInfoRepository.getBasalMetabolicRate();
-      var actual = userInfoRepository.getPowerMetabolicRate();
-
-      expect(actual, basalMetabolicRate * userData.palValue);
     });
   });
 }

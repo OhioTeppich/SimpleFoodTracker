@@ -14,7 +14,7 @@ class UserDataRepository {
   static const String userGenderKey = 'user-gender';
   static const String userHeightKey = 'user-height';
   static const String userAge = 'user-age';
-  static const String athleticActivity = 'athletic-activity';
+  static const String userAthleticActivity = 'athletic-activity';
 
   void saveUserData(UserData userData) {
     _sharedPreferences.setString(userNameKey, userData.name);
@@ -23,7 +23,7 @@ class UserDataRepository {
     _sharedPreferences.setInt(userGenderKey, userData.gender);
     _sharedPreferences.setInt(userHeightKey, userData.height);
     _sharedPreferences.setInt(userAge, userData.age);
-    _sharedPreferences.setInt(athleticActivity, userData.athleticActivity);
+    _sharedPreferences.setInt(userAthleticActivity, userData.athleticActivity);
   }
 
   UserData loadUserData() {
@@ -34,7 +34,7 @@ class UserDataRepository {
       gender: _sharedPreferences.getInt(userGenderKey) ?? 0,
       height: _sharedPreferences.getInt(userHeightKey) ?? 0,
       age: _sharedPreferences.getInt(userAge) ?? 0,
-      athleticActivity: _sharedPreferences.getInt(athleticActivity) ?? 0,
+      athleticActivity: _sharedPreferences.getInt(userAthleticActivity) ?? 0,
     );
   }
 }

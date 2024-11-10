@@ -1,13 +1,12 @@
 import 'package:equatable/equatable.dart';
 import 'package:simple_food_tracker/domain/core/entity.dart';
-import 'package:uuid/uuid.dart';
 
 class DailyFood extends Equatable implements Entity {
   @override
-  final Uuid id;
+  final String id;
 
-  final List<Uuid> foodIds;
-  final List<Uuid> mealIds;
+  final List<String> foodIds;
+  final List<String> mealIds;
   final DateTime date;
 
   const DailyFood({
@@ -18,9 +17,9 @@ class DailyFood extends Equatable implements Entity {
   });
 
   DailyFood copyWith({
-    Uuid? id,
-    List<Uuid>? foodIds,
-    List<Uuid>? mealIds,
+    String? id,
+    List<String>? foodIds,
+    List<String>? mealIds,
     DateTime? date,
   }) {
     return DailyFood(

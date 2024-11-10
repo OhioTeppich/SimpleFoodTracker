@@ -7,7 +7,6 @@ import 'package:simple_food_tracker/domain/db/db_repository.dart';
 import 'package:path/path.dart' as p;
 import 'package:simple_food_tracker/domain/food/food.dart';
 import 'package:simple_food_tracker/domain/meal/meal.dart';
-import 'package:uuid/uuid.dart';
 
 class JsonDatasource<T extends Entity> extends Datasource<T> {
   final String path;
@@ -20,13 +19,13 @@ class JsonDatasource<T extends Entity> extends Datasource<T> {
     required this.fromJson,
   });
 
-  Future<File> _localFile(Uuid id) async {
+  Future<File> _localFile(String id) async {
     var localDir = Directory(path);
     if (localDir.existsSync() == false) {
       localDir.createSync(recursive: true);
     }
 
-    var file = File(p.join(path, id.v1()));
+    var file = File(p.join(path, id));
     await file.create(recursive: true);
     return file;
   }
@@ -35,16 +34,18 @@ class JsonDatasource<T extends Entity> extends Datasource<T> {
   Future<void> write(T data) async {
     final file = await _localFile(data.id);
 
-    file.writeAsStringSync(jsonEncode(fromEntity(data)));
+    var entity = fromEntity(data);
+
+    file.writeAsStringSync(jsonEncode(entity));
   }
 
   @override
-  Future<T> read(Uuid id) async {
+  Future<T> read(String id) async {
     try {
       final file = await _localFile(id);
       return fromJson(jsonDecode(file.readAsStringSync()));
     } catch (e) {
-//TODO: Add Error handling
+      //TODO: Add Error handling
       throw Exception([e]);
     }
   }
@@ -57,7 +58,7 @@ class JsonDatasource<T extends Entity> extends Datasource<T> {
     for (var dir in localDir.listSync()) {
       if (dir is File == true) {
         var file = File(dir.path);
-        list.add(jsonDecode(file.readAsStringSync()));
+        list.add(fromJson(jsonDecode(file.readAsStringSync())));
       }
     }
     return list;
@@ -65,6 +66,7 @@ class JsonDatasource<T extends Entity> extends Datasource<T> {
 
   @override
   Future<void> delete(String data, String fileName) async {
+    //TODO:
     // final file = await _localFile(fileName);
 
     // final contents = await file.readAsString();

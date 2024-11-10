@@ -1,10 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:simple_food_tracker/domain/core/entity.dart';
-import 'package:uuid/uuid.dart';
 
 class Food extends Equatable with Entity {
   @override
-  final Uuid id;
+  final String id;
 
   final String name;
   final double kcal;

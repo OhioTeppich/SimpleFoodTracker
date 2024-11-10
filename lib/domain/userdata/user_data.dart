@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:simple_food_tracker/domain/core/entity.dart';
 
-class UserData extends Equatable with Entity {
+class UserData extends Equatable {
   final String name;
   final double weight;
   final double palValue;
@@ -12,14 +11,15 @@ class UserData extends Equatable with Entity {
   final int age;
   final int athleticActivity;
 
-  const UserData(
-      {required this.name,
-      required this.weight,
-      required this.palValue,
-      required this.gender,
-      required this.height,
-      required this.age,
-      required this.athleticActivity});
+  const UserData({
+    required this.name,
+    required this.weight,
+    required this.palValue,
+    required this.gender,
+    required this.height,
+    required this.age,
+    required this.athleticActivity,
+  });
 
   UserData copyWith({
     String? name,

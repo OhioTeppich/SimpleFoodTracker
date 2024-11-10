@@ -17,7 +17,7 @@ class _TestEntity extends Equatable with Entity {
   });
 
   @override
-  final Uuid id;
+  final String id;
   final int value;
   final List<String> list;
   final DateTime date;
@@ -69,7 +69,7 @@ void main() {
     datasource = _TestEntityLocalDatasource();
     date = DateTime.now();
     data = _TestEntity(
-      id: const Uuid(),
+      id: const Uuid().v1(),
       value: 1,
       list: const ['list1', 'list2'],
       date: date,
@@ -77,8 +77,9 @@ void main() {
   });
 
   tearDownAll(() async {
-    // var directory = Directory(path);
-    // directory.deleteSync(recursive: true);
+    var directory =
+        Directory('/Users/christianmaciosek/simple_food_tracker/trash');
+    directory.deleteSync(recursive: true);
   });
 
   group('LocalDbRepository', () {
@@ -89,19 +90,40 @@ void main() {
         var file = File(
           p.join(
             '/Users/christianmaciosek/simple_food_tracker/trash',
-            data.id.v1(),
+            data.id,
           ),
         );
 
         expect(file.existsSync(), isTrue);
       });
     });
-    // group('read', () {
-    //   test('should read data from file', () async {
-    //     var actual = await localDbRepository.read('localDB.json');
+    group('read', () {
+      test('should read data from file', () async {
+        await datasource.write(data);
 
-    //     expect(actual, [data]);
-    //   });
-    // });
+        var actual = await datasource.read(data.id);
+
+        expect(actual, data);
+      });
+    });
+    group('readAll', () {
+      test('should readAll data from file', () async {
+        var data2 = _TestEntity(
+          id: const Uuid().v1(),
+          value: 2,
+          list: const [],
+          date: DateTime.now(),
+        );
+
+        await datasource.write(data);
+        await datasource.write(data2);
+
+        var actual = await datasource.readAll();
+        var expected = [data, data2];
+
+        expect(actual.length, 2);
+        expect(Set.from(actual).containsAll(Set.from(expected)), isTrue);
+      });
+    });
   });
 }
