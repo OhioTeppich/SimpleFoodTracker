@@ -1,5 +1,5 @@
 import 'package:uuid/uuid.dart';
 
-abstract class Entity {
+mixin Entity {
   Uuid get id;
 }

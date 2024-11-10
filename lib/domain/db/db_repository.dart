@@ -1,5 +1,18 @@
-abstract class DbRepository {
-  Future<void> create(String data, String fileName);
-  Future<String> read(String fileName);
+import 'package:simple_food_tracker/domain/core/entity.dart';
+import 'package:simple_food_tracker/domain/daily_food/daily_food.dart';
+import 'package:simple_food_tracker/domain/food/food.dart';
+import 'package:simple_food_tracker/domain/meal/meal.dart';
+import 'package:uuid/uuid.dart';
+
+abstract class Datasource<T extends Entity> {
+  Future<void> write(T data);
+  Future<T> read(Uuid id);
+  Future<List<T>> readAll();
   Future<void> delete(String data, String fileName);
 }
+
+abstract class FoodDatasource extends Datasource<Food> {}
+
+abstract class MealDatasrouce extends Datasource<Meal> {}
+
+abstract class DailyFoodDatasoruce extends Datasource<DailyFood> {}

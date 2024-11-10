@@ -1,32 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:simple_food_tracker/presentation/core/simple_food_tracker_theme.dart';
 
-class CustomButton extends StatefulWidget {
-  final Widget _text;
+class ServingButton extends StatefulWidget {
+  final String _imagePath;
   final void Function()? _onTap;
-  final double? _height;
-  final double? _width;
-  final EdgeInsetsGeometry? _padding;
 
-  const CustomButton({
+  const ServingButton({
     super.key,
-    required Widget text,
-    void Function()? onTap,
-    double? height,
-    double? width,
-    EdgeInsetsGeometry? padding,
-  })  : _padding = padding,
-        _height = height,
-        _width = width,
-        _onTap = onTap,
-        _text = text;
+    required String imagePath,
+    required void Function()? onTap,
+  })  : _onTap = onTap,
+        _imagePath = imagePath;
 
   @override
-  State<CustomButton> createState() => _CustomButtonState();
+  State<ServingButton> createState() => _ServingButtonState();
 }
 
-class _CustomButtonState extends State<CustomButton>
+class _ServingButtonState extends State<ServingButton>
     with TickerProviderStateMixin {
   late final AnimationController _animationController;
 
@@ -43,13 +35,17 @@ class _CustomButtonState extends State<CustomButton>
     return GestureDetector(
       onTap: () => _animationController.forward(),
       child: Container(
-        height: widget._height,
-        width: widget._width,
-        padding: widget._padding,
-        decoration: const BoxDecoration(
-            color: SimpleFoodTrackerColor.clickAbleColor,
-            borderRadius: BorderRadius.all(Radius.circular(12.5))),
-        child: widget._text,
+        padding: const EdgeInsets.all(4.0),
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(
+            Radius.circular(50),
+          ),
+          border: Border.all(
+            width: 2.0,
+            color: SimpleFoodTrackerColor.backgroundProgressColor,
+          ),
+        ),
+        child: SvgPicture.asset(widget._imagePath),
       )
           .animate(
               controller: _animationController,
