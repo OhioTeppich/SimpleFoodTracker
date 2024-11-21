@@ -17,3 +17,14 @@ class ChangeSelectedMealEvent extends AddMealEvent {
   @override
   List<Object> get props => [newIndex];
 }
+
+class AddDailyFoodEvent<T> extends AddMealEvent {
+  final DailyFood data;
+
+  const AddDailyFoodEvent({
+    required this.data,
+  });
+
+  @override
+  List<Object> get props => [data];
+}

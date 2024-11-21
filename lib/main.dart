@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:simple_food_tracker/application/addmeal/add_meal_bloc.dart';
 import 'package:simple_food_tracker/application/diet/diet_bloc.dart';
 import 'package:simple_food_tracker/application/onboarding/on_boarding_cubit.dart';
 import 'package:simple_food_tracker/presentation/pages/add_meal_page.dart';
+import 'package:simple_food_tracker/presentation/pages/add_new_meal_page.dart';
 import 'package:simple_food_tracker/presentation/pages/diet/diet_page.dart';
 import 'package:simple_food_tracker/presentation/pages/home/home_page.dart';
 import 'package:simple_food_tracker/presentation/pages/mealType/meal_type_page.dart';
@@ -15,6 +17,10 @@ void main() async {
 
   // init of InjectionContainer
   await init();
+
+  await Permission.storage.request();
+
+  print(await Permission.storage.status);
 
   runApp(
     MultiBlocProvider(
@@ -46,6 +52,7 @@ class MainApp extends StatelessWidget {
         '/diet': (context) => const DietPage(),
         '/mealtype': (context) => const MealTypePage(),
         '/addmeal': (context) => const AddMealPage(),
+        '/addnewmeal': (context) => const AddNewMealPage(),
       },
       initialRoute:
           false //context.read<OnBoardingCubit>().loadUserData() == UserData.empty()

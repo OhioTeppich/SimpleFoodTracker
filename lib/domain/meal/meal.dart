@@ -23,7 +23,7 @@ class Meal extends Equatable with Entity {
   static Meal fromJson(Map<String, dynamic> json) => Meal(
         id: json['id'],
         name: json['name'],
-        foodIds: json['foodIds'],
+        foodIds: [...json['foodIds']],
       );
 
   factory Meal.fromEntity(Meal meal) {

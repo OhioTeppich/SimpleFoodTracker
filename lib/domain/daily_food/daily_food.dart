@@ -32,16 +32,16 @@ class DailyFood extends Equatable implements Entity {
 
   static DailyFood fromJson(Map<String, dynamic> json) => DailyFood(
         id: json['id'],
-        foodIds: json['foodIds'],
-        mealIds: json['mealIds'],
-        date: json['date'],
+        foodIds: [...json['foodIds']],
+        mealIds: [...json['mealIds']],
+        date: DateTime.parse(json['date']),
       );
 
   Map<String, dynamic> toJson(DailyFood dailyFood) => {
         'id': dailyFood.id,
         'foodIds': dailyFood.foodIds,
         'mealIds': dailyFood.mealIds,
-        'date': dailyFood.date,
+        'date': dailyFood.date.toIso8601String(),
       };
 
   factory DailyFood.fromEntity(DailyFood dailyFood) {

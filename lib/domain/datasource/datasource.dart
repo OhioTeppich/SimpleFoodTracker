@@ -5,7 +5,7 @@ import 'package:simple_food_tracker/domain/meal/meal.dart';
 
 abstract class Datasource<T extends Entity> {
   Future<void> write(T data);
-  Future<T> read(String id);
+  Future<T?> read(String id);
   Future<List<T>> readAll();
   Future<void> delete(String data, String fileName);
 }

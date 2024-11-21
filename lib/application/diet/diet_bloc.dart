@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_food_tracker/domain/core/macros.dart';
-import 'package:simple_food_tracker/domain/db/db_repository.dart';
+import 'package:simple_food_tracker/domain/datasource/datasource.dart';
 import 'package:simple_food_tracker/domain/userdata/user_data.dart';
 import 'package:simple_food_tracker/infrastructure/userdata/user_data_repository.dart';
 

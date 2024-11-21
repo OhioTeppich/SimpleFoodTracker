@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:simple_food_tracker/application/addmeal/add_meal_bloc.dart';
+import 'package:simple_food_tracker/domain/daily_food/daily_food.dart';
 import 'package:simple_food_tracker/presentation/core/custom_button.dart';
 import 'package:simple_food_tracker/presentation/core/simple_food_tracker_theme.dart';
 
@@ -26,6 +27,7 @@ class AddMealPage extends StatelessWidget {
         return Scaffold(
           backgroundColor: SimpleFoodTrackerColor.backgroundColor,
           appBar: AppBar(
+            surfaceTintColor: Colors.transparent,
             backgroundColor: Colors.white,
             title: Text(title),
           ),
@@ -120,21 +122,39 @@ class AddMealPage extends StatelessWidget {
                               backgroundColor:
                                   SimpleFoodTrackerColor.clickAbleColor,
                               imagePath: 'assets/images/clock.svg',
-                              text: '10+15 Min',
+                              text: const Text(
+                                '10+15 Min',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
                             ),
                             InfoBox(
                               state: state,
                               backgroundColor:
                                   SimpleFoodTrackerColor.fatProgressColor,
                               imagePath: 'assets/images/bar_chart.svg',
-                              text: 'Medium Level',
+                              text: const Text(
+                                'Medium Level',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
                             ),
                             InfoBox(
                               state: state,
                               backgroundColor:
                                   SimpleFoodTrackerColor.caloriesProgressColor,
                               imagePath: 'assets/images/flame.svg',
-                              text: '${state.currentKcal} Cal',
+                              text: Text(
+                                '${state.currentKcal} Cal',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -190,7 +210,38 @@ class AddMealPage extends StatelessWidget {
                           ),
                           padding: const EdgeInsets.symmetric(vertical: 16.0),
                           width: double.infinity,
-                          onTap: () {},
+                          onTap: () {
+                            context.read<AddMealBloc>().add(
+                                  AddDailyFoodEvent(
+                                    data: DailyFood(
+                                      id: 'id',
+                                      foodIds: const ['nichts'],
+                                      mealIds: const ['viel'],
+                                      date: DateTime.now(),
+                                    ),
+                                  ),
+                                );
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12.0, vertical: 12.0),
+                        child: CustomButton(
+                          text: const Center(
+                            child: Text(
+                              '+ Add New Meal',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15.0,
+                              ),
+                            ),
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                          width: double.infinity,
+                          onTap: () =>
+                              Navigator.pushNamed(context, '/addnewmeal'),
                         ),
                       ),
                     ],

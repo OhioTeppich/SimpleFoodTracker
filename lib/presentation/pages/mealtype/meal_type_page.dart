@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:simple_food_tracker/presentation/core/date_picker.dart';
+import 'package:simple_food_tracker/presentation/core/meal_type_box.dart';
 import 'package:simple_food_tracker/presentation/core/simple_food_tracker_theme.dart';
-import 'package:simple_food_tracker/presentation/core/white_box.dart';
 
 class MealTypePage extends StatelessWidget {
   const MealTypePage({super.key});
@@ -19,7 +19,7 @@ class MealTypePage extends StatelessWidget {
         children: [
           const DatePicker(),
           const SizedBox(height: 2.0),
-          WhiteBox(
+          MealTypeBox(
             image: SvgPicture.asset(
               'assets/images/breakfast.svg',
               alignment: Alignment.bottomRight,
@@ -29,7 +29,7 @@ class MealTypePage extends StatelessWidget {
             onTap: () => Navigator.pushNamed(context, '/addmeal',
                 arguments: {'title': 'Breakfast'}),
           ),
-          WhiteBox(
+          MealTypeBox(
             image: SvgPicture.asset(
               'assets/images/lunch.svg',
               alignment: Alignment.bottomLeft,
@@ -38,8 +38,9 @@ class MealTypePage extends StatelessWidget {
             imagePosition: ImagePosition.left,
             onTap: () => Navigator.pushNamed(context, '/addmeal',
                 arguments: {'title': 'Lunch'}),
+            animationDelay: const Duration(milliseconds: 200),
           ),
-          WhiteBox(
+          MealTypeBox(
             image: SvgPicture.asset(
               'assets/images/snack.svg',
               alignment: Alignment.bottomRight,
@@ -48,8 +49,9 @@ class MealTypePage extends StatelessWidget {
             imagePosition: ImagePosition.right,
             onTap: () => Navigator.pushNamed(context, '/addmeal',
                 arguments: {'title': 'Snack'}),
+            animationDelay: const Duration(milliseconds: 400),
           ),
-          WhiteBox(
+          MealTypeBox(
             image: SvgPicture.asset(
               'assets/images/dinner.svg',
               alignment: Alignment.bottomLeft,
@@ -58,6 +60,7 @@ class MealTypePage extends StatelessWidget {
             imagePosition: ImagePosition.left,
             onTap: () => Navigator.pushNamed(context, '/addmeal',
                 arguments: {'title': 'Dinner'}),
+            animationDelay: const Duration(milliseconds: 600),
           ),
         ]
             .map(

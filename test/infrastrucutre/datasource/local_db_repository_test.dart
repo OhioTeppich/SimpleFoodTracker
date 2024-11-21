@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_food_tracker/domain/core/entity.dart';
-import 'package:simple_food_tracker/infrastructure/db/json_datasource.dart';
+import 'package:simple_food_tracker/infrastructure/datasource/json_datasource.dart';
 import 'package:uuid/uuid.dart';
 
 class _TestEntity extends Equatable with Entity {
