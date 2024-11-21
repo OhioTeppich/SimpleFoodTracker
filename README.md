@@ -1,3 +1,6 @@
-# simple_food_tracker
+# Simple Food Tracker (SFT)
 
-A new Flutter project.
+A Flutter Project to track your food.
+
+Working in Kanban at the following board:
+<https://trello.com/b/xwv2GB0W/simplefoodtracker>
